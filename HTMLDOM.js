@@ -163,12 +163,6 @@ boxElement.classList.add('red');
 
 EventListener
 
-
-
-
- */
-
-
 //Cách xử lý DOM Event
 var buttonElement = document.querySelector('.btn');
 
@@ -198,3 +192,9 @@ buttonElement.addEventListener('click', viec2)
 setTimeout(() => {
     buttonElement.removeEventListener('click', viec1)
 },2000)
+
+ */
+//abc
+
+
+
