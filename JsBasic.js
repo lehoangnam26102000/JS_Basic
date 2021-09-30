@@ -58,14 +58,15 @@ console.log(myString.charAt(0)) return N // 0: vị trí lấy
 /*
 Array
 
-var language = [
-    'JavaScript',
-    'PHP',
-    'Ruby'
+var language = 
+    {
+
+    }'JavaScr
+    'Ruy'
 ];
 
-var language2 = [
-    'Dart',
+var'PH     language2 = [
+    'Da}rt',
     'Java'
 ]
 
@@ -486,9 +487,24 @@ Callback
 /*
 
 1. Promise
+
 - Sync (Đồng bộ)
 - Async (bất đồng bộ)
-- Lý thuyết, thực hành
+
++ setTimeout
++ setInterval
++ Fetch
++ xmlHttpRequest
++ file reading
++ request animation frame
+
+- Pain
+
+//Callback hell
+// Pyramid of doom
+
+- Lý thuyết, cách hoạt động 
+- Thực hành
 
 
 
@@ -502,6 +518,175 @@ Callback
 9. Performance
 
 */
+
+ //3 trạng thái
+//- Pending (trạng thái chờ)
+//- Fullfilled (thực thi thành công)
+//- Reject (thực thi thất bại)
+
+// var promise = new Promise(
+//     //Executor
+//     function(resolve, reject) {
+//         // Logic
+//         // Success: resolve() 
+//         resolve({
+//             "name": "namle",
+//             "age": 20
+//         })
+        
+//         // Failed: reject()
+//         reject('Error!');
+//     }
+// )
+
+// promise
+//       .then(function(data){
+//           console.log(data);
+//       }) //Đc thực thi khi gọi resolve
+//       .catch(function(error){
+//           console.log(error);
+//       }) //Đc thực khi khi gọi reject
+//       .finally(function(){}) //Đc thực khi khi gọi cả 2
+
+
+// //Chain (chuỗi nối nhau)
+
+// function sleep(ms){
+//     return new Promise(function(resolve){
+//         setTimeout(resolve, ms);
+//     })
+// }
+
+// Chạy tuần tự
+// sleep(1000)
+//           .then(function(){
+//               console.log(1)
+//               return sleep(1000);
+//           })
+//           .then(function(){
+//             console.log(2)
+//             return sleep(1000);
+//         })
+//         .then(function(){
+//             console.log(3)
+//             return sleep(1000);
+//         })
+
+
+//Chạy đến khi gặp reject thì sẽ return ra catch
+// sleep(1000)
+//           .then(function(){
+//               console.log(1)
+//               return sleep(1000);
+//           })
+//           .then(function(){
+//             console.log(2)
+//             return new Promise(function(resolve,reject){
+//                 reject('Error');
+//             });
+//         })
+//         .then(function(){
+//             console.log(3)
+//             return sleep(1000);
+//         })
+//         .catch(function(error){
+//             console.log(error);
+//         })
+
+//1. Promise.resolve
+
+//var promise = Promise.resolve(); //Trả về luôn thành công
+
+//2. Promise.reject (tương tự)
+
+//3. Promise.all (Chạy song song 2 promise)
+// var promise1 = new Promise(function(resolve,reject){
+//     setTimeout(function(){
+//         resolve([1])
+//     }, 2000);
+// })
+
+// var promise2 = new Promise(function(resolve,reject){
+//     setTimeout(function(){
+//         resolve([2,3])
+//     }, 4000);
+// })
+
+// Promise.all([promise1, promise2]).then(
+//     function(result){
+//         var result1 = result[0];
+//         var result2 = result[1];
+//         console.log(result1.concat(result2)); 
+//     }
+// )
+
+var users =[
+    {id: 1,
+    "name": "namle"},
+    {id: 2, 
+    "name": "abc"},
+];
+
+var comments = [
+    {id:1,
+    user_id:1,
+    "content": "abc" },
+    {id:2,
+    user_id:2,
+    "content": "xyz" },
+    {id:3,
+    user_id:1,
+    "content": "sdas" },
+    {id:4,
+        user_id:1,
+        "content": "sdas" }
+];
+
+function getComment(){
+    return new Promise(function(resolve){
+        setTimeout(function(){
+            resolve(comments);
+        })
+    }, 1000)
+}
+
+function getUsersByID(userIDs){
+    return new Promise(function(resolve){
+        setTimeout( function (){
+            var result = users.filter(function(user){
+                return userIDs.includes(user.id);
+            })
+            resolve(result);
+        },1000)
+    })
+}
+
+getComment()
+          .then(function(comments){
+              var userIDs = comments.map(function(comment){
+                  return comment.user_id; 
+              });
+
+              return getUsersByID(userIDs)
+                                .then(function(data){
+                                    return {
+                                        users: users,
+                                        comments: comments
+                                    };
+                                });
+          })
+          .then(function(data){
+              var commentBlock = document.getElementById('comment-box');
+              var html ='';
+              data.comments.forEach(function(comment){
+                  var user = data.users.find(function(user){
+                      return user.id == comment.user_id;
+                  })
+                  html += `<li>${user.name}: ${comment.content}</li>`
+              })
+              commentBlock.innerHTML = html;
+          })
+
 
 
 
