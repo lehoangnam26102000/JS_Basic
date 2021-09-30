@@ -483,7 +483,25 @@ Callback
 */
 
 
+/*
 
+1. Promise
+- Sync (Đồng bộ)
+- Async (bất đồng bộ)
+- Lý thuyết, thực hành
+
+
+
+2. Fetch
+3. DOM location
+4. Local storage
+5. Session storage
+6. Coding convention
+7. Best pratices
+8. Mistakes
+9. Performance
+
+*/
 
 
 
