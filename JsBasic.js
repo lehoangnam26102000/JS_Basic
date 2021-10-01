@@ -508,17 +508,6 @@ Callback
 
 
 
-2. Fetch
-3. DOM location
-4. Local storage
-5. Session storage
-6. Coding convention
-7. Best pratices
-8. Mistakes
-9. Performance
-
-*/
-
  //3 trạng thái
 //- Pending (trạng thái chờ)
 //- Fullfilled (thực thi thành công)
@@ -620,73 +609,111 @@ Callback
 //     }
 // )
 
-var users =[
-    {id: 1,
-    "name": "namle"},
-    {id: 2, 
-    "name": "abc"},
-];
 
-var comments = [
-    {id:1,
-    user_id:1,
-    "content": "abc" },
-    {id:2,
-    user_id:2,
-    "content": "xyz" },
-    {id:3,
-    user_id:1,
-    "content": "sdas" },
-    {id:4,
-        user_id:1,
-        "content": "sdas" }
-];
+//Promise example
+// var users =[
+//     {id: 1,
+//     "name": "namle"},
+//     {id: 2, 
+//     "name": "abc"},
+// ];
 
-function getComment(){
-    return new Promise(function(resolve){
-        setTimeout(function(){
-            resolve(comments);
+// var comments = [
+//     {id:1,
+//     user_id:1,
+//     "content": "abc" },
+//     {id:2,
+//     user_id:2,
+//     "content": "xyz" },
+//     {id:3,
+//     user_id:1,
+//     "content": "sdas" },
+//     {id:4,
+//         user_id:1,
+//         "content": "sdas" }
+// ];
+
+// function getComment(){
+//     return new Promise(function(resolve){
+//         setTimeout(function(){
+//             resolve(comments);
+//         })
+//     }, 1000)
+// }
+
+// function getUsersByID(userIDs){
+//     return new Promise(function(resolve){
+//         setTimeout( function (){
+//             var result = users.filter(function(user){
+//                 return userIDs.includes(user.id);
+//             })
+//             resolve(result);
+//         },1000)
+//     })
+// }
+
+// getComment()
+//           .then(function(comments){
+//               var userIDs = comments.map(function(comment){
+//                   return comment.user_id; 
+//               });
+
+//               return getUsersByID(userIDs)
+//                                 .then(function(data){
+//                                     return {
+//                                         users: users,
+//                                         comments: comments
+//                                     };
+//                                 });
+//           })
+//           .then(function(data){
+//               var commentBlock = document.getElementById('comment-box');
+//               var html ='';
+//               data.comments.forEach(function(comment){
+//                   var user = data.users.find(function(user){
+//                       return user.id == comment.user_id;
+//                   })
+//                   html += `<li>${user.name}: ${comment.content}</li>`
+//               })
+//               commentBlock.innerHTML = html;
+//           })
+
+
+2. Fetch
+
+var stringAPI = 'https://jsonplaceholder.typicode.com/posts';
+
+fetch(stringAPI)
+      .then(function(res){
+          return res.json();
+      })
+    .then(function(datas){
+        var htmls = datas.map(function(data){
+            return `<li>
+            <h2>${data.title}</h2>
+            <h2>${data.body}</h2>
+            </li>`
         })
-    }, 1000)
-}
 
-function getUsersByID(userIDs){
-    return new Promise(function(resolve){
-        setTimeout( function (){
-            var result = users.filter(function(user){
-                return userIDs.includes(user.id);
-            })
-            resolve(result);
-        },1000)
+        document.querySelector('#comment-box').innerHTML = htmls.join('');
+        
     })
-}
 
-getComment()
-          .then(function(comments){
-              var userIDs = comments.map(function(comment){
-                  return comment.user_id; 
-              });
 
-              return getUsersByID(userIDs)
-                                .then(function(data){
-                                    return {
-                                        users: users,
-                                        comments: comments
-                                    };
-                                });
-          })
-          .then(function(data){
-              var commentBlock = document.getElementById('comment-box');
-              var html ='';
-              data.comments.forEach(function(comment){
-                  var user = data.users.find(function(user){
-                      return user.id == comment.user_id;
-                  })
-                  html += `<li>${user.name}: ${comment.content}</li>`
-              })
-              commentBlock.innerHTML = html;
-          })
+// Fake API JSON server
 
+
+
+3. DOM location
+4. Local storage
+5. Session storage
+6. Coding convention
+7. Best pratices
+8. Mistakes
+9. Performance
+
+
+*/
 
 
 
