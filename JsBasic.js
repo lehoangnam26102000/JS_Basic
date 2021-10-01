@@ -699,11 +699,6 @@ fetch(stringAPI)
         
     })
 
-
-// Fake API JSON server
-
-
-
 3. DOM location
 4. Local storage
 5. Session storage
@@ -711,8 +706,6 @@ fetch(stringAPI)
 7. Best pratices
 8. Mistakes
 9. Performance
-
-
 */
 
 
