@@ -708,6 +708,185 @@ fetch(stringAPI)
 9. Performance
 */
 
+/*
+ECMA Script6 (ES6)
+
+1. Let, const
+
+- var / let,const: scope, hosting
++ scope: var có thể gọi ngoài func, if else, ..., còn let, const thì không
++ hosting: var có hỗ trợ hosting, let, const thì không
+
+- const / var, let: assignment
++ const chỉ đc gán 1 lần
++ let, var có thể gán nhiều lần
+
+2. Template Literals
+const courseName = 'JavaScript';
+const description = 'Course Name' + courseName;
+                 // `Course Name ${courseName}`; 
 
 
+3. Multi-line String
+const lines = 'Line1 \n line 2' // =>  line1 
+                                //     line2
+const lines = `line1    => line1
+               line2`      line2     
+
+4. Arrow  Functions
+
+const sum = function(a, b){
+    return a + b;
+}
+const myFunc = function(log) {
+    console.log(log);
+}
+
+const object = function(a, b){
+    return {
+        a: a,
+        b: b
+    }
+}
+
+//Arrow Function
+const sum = (a, b) => a + b;    
+
+//Cach 1:
+ const myFunc = (log) => {
+    console.log(log);
+}
+//Cach 2: 
+const myFunc = log => console.log(log);
+
+const object = (a, b) => ({a: a, b: b});
+
+
+5. Classes
+//Object constructor
+function Course(name, price){
+    this.name = name;
+    this.price = price;
+    this.getName = function(){ return this.name};
+}
+
+class Course {
+    contructor(name, price){
+        this.name = name;
+        this.price = price;
+    }
+
+    getName(){ return this.name};
+
+    getPrice(){ return this.price};
+}
+
+
+6. Default Parameter Values
+function logger(log = 'Default value'){
+    console.log(log);
+} // Nếu không truyền gì vào logger() thì sẽ 
+  // return Default value
+
+logger('abc');
+
+
+7. Destructoring
+var array = ['javacript', 'php', 'ruby'];
+var course = {
+    name: 'javacript',
+    price: 1000
+}
+
+//ES5
+//Array
+var a = array[0];
+var b = array[1];
+var c = array[2];
+//Object
+course.name;
+course.price;
+
+//ES6
+var [a, b, c] = array;
+var {name, price} = course;
+
+//Lấy a, c
+var [a, , c] = array;
+var {name} = course;
+
+//Lấy phần thử còn lại
+var [a, ...rest] = array;
+console.log(a) // => javacript
+console.log(rest) // =>php, ruby
+var {name, ...rest} = course;
+var array = ['javacript', 'php', 'ruby'];
+var course = {
+    name: 'javacript',
+    price: 1000
+}
+
+//ES5
+//Array
+var a = array[0];
+var b = array[1];
+var c = array[2];
+//Object
+course.name;
+course.price;
+
+//ES6
+var [a, b, c] = array;
+var {name, price} = course;
+
+//Lấy a, c
+var [a, , c] = array;
+var {name} = course;
+
+//Lấy phần thử còn lại
+var [a, ...rest] = array;
+console.log(a) // => javacript
+console.log(rest) // =>php, ruby
+var {name, ...rest} = course;
+
+
+function myFunc(...rest){
+    console.log(rest);
+}
+
+console.log(1, 2, 3, 4, 5, 6); // => trả về mảng [1, 2 ,3, 4 ,5 ,6]
+
+8. Rest Parameter
+9. Spread
+10. Enhanced object Literals
+
+// 1. Định nghĩa key: value cho object
+// 2. Định nghĩa method cho object
+// 3. Định nghĩa key cho object dưới dạng biến
+
+var nameCourse = 'javascript';
+var price = 1000;
+
+//ES5
+var course = {
+    name: nameCourse,
+    price: price,
+    getName = function(){
+        return nameCourse; 
+    }
+}
+
+//ES6
+var course = {
+    nameCourse,
+    price,
+    getName() { return nameCourse}
+
+}
+
+
+11. Tagged template literals
+12. Modules
+
+*/
 
