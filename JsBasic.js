@@ -843,7 +843,7 @@ var {name, price} = course;
 var [a, , c] = array;
 var {name} = course;
 
-//Lấy phần thử còn lại
+//Rest: Lấy phần thử còn lại
 var [a, ...rest] = array;
 console.log(a) // => javacript
 console.log(rest) // =>php, ruby
@@ -858,6 +858,23 @@ console.log(1, 2, 3, 4, 5, 6); // => trả về mảng [1, 2 ,3, 4 ,5 ,6]
 
 8. Rest Parameter
 9. Spread
+
+//Array
+var arr1 = [1, 2, 3];
+var arr2 = [4, 5];
+
+var arr3 = [...arr1, ...arr2]; //=> return [1, 2, 3, 4 ,5];\
+
+//Object
+var obj1 = {
+    name: 'javacript',
+};
+var obj2 = {
+    price: 100
+}
+
+var obj3 = {...obj1, ...obj2}; // => {name: 'javacript', price:100};
+
 10. Enhanced object Literals
 
 // 1. Định nghĩa key: value cho object
@@ -884,9 +901,42 @@ var course = {
 
 }
 
-
 11. Tagged template literals
-12. Modules
+
+
+function highlight([first,...rest], ...values) {
+    return values.reduce(
+        (acc, curr) => [...acc, `<span>${curr}</span>`, rest.shift()], [first]
+    ).join(' ');
+} 
+
+var brand = 'f8';
+var course = 'javacript';
+ 
+const html = highlight`Học lập trình ${course} tại ${brand} !`; 
+console.log(html); // => Học lập trình <span>javascript</span> tại <span>f8</span> !
+
+12. Modules: import/export
+
+import logger from './logger/logger2.js'
+import { TYPE_LOG, TYPE_ERROR, TYPE_WARN} from './constaint.js'
+
+logger('abc', TYPE_ERROR);
+
+
+13. Optional chaining(?.)
+
+var obj = {
+    name: 'namle',
+    cat :{
+        name: 'namele1',
+        cat2:{
+            name: 'namle2'
+        }
+    }
+}
+if(obj?.cat?.cat2){
+    console.log(obj.cat.cat2.name);
+}
 
 */
-
